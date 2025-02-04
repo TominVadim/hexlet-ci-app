@@ -1,0 +1,24 @@
+name: strapi-test
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Проверка кода из репозитория
+        uses: actions/checkout@v2
+
+      - name: Установка Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 'v22.2.0'
+
+      - name: Сетап проекта
+        run: make setup
+
+      - name: Запуск тестов
+        run: make test
+
+      - name: Запуск линтера
+        run: make lint
+  
