@@ -11,19 +11,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
       - name: Проверка кода из репозитория
         uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Установка Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: Use Node.js ${{ matrix.node-version }}
-          cache: npm
+          node-version: 'v22.2.0'
 
       - name: Сетап проекта
         run: make setup
@@ -33,7 +28,6 @@ jobs:
 
       - name: Запуск линтера
         run: make lint
-        
       - name: Hello from Hexlet!
         uses: hexlet-components/hello-from-hexlet-action@release
   
